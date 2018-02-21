@@ -3,7 +3,6 @@
 #include <cstdint>
 
 #include "Framerate.h"
-#include "Framerate.h"
 
 class Engine {
 	public:

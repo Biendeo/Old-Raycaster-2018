@@ -5,8 +5,10 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_SOURCE_DIR}/cmake)
 
 find_package(SDL2 REQUIRED)
-include_directories(${SDL2_INCLUDE_DIR})
+include_directories(${SDL2_INCLUDE_DIR} ./include)
 
-add_executable(Raycaster src/Main.cpp src/Framerate.cpp src/Framerate.h src/Engine.cpp src/Engine.h src/View.cpp src/View.h)
+add_library(RaycasterEngine SHARED src/Framerate.cpp include/Framerate.h src/Engine.cpp include/Engine.h)
 
-target_link_libraries(Raycaster ${SDL2_LIBRARY})
+add_executable(Raycaster src/Main.cpp src/Framerate.cpp include/Framerate.h src/Engine.cpp include/Engine.h src/View.cpp src/View.h)
+
+target_link_libraries(Raycaster ${SDL2_LIBRARY} RaycasterEngine)
