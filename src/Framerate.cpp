@@ -2,12 +2,10 @@
 
 #include <thread>
 
+Framerate::Framerate() : Framerate(0) {}
+
 Framerate::Framerate(uint16_t targetFramerate) {
-	_targetFramerate = targetFramerate;
-	//? Are microseconds precise enough or should I use nanoseconds?
-	_maximumFrameTime = std::chrono::microseconds(1000000 / targetFramerate);
-	// This encourages the program to think that it needs to update the frame right after construction.
-	ManualReset();
+	SetTargetFramerate(targetFramerate);
 }
 
 void Framerate::ManualReset() {
@@ -25,4 +23,21 @@ void Framerate::Update() {
 void Framerate::WaitAndUpdate() {
 	WaitForUpdate();
 	Update();
+}
+
+uint16_t Framerate::GetTargetFramerate() const {
+	return _targetFramerate;
+}
+
+void Framerate::SetTargetFramerate(uint16_t targetFramerate) {
+	_targetFramerate = targetFramerate;
+	//? Are microseconds precise enough or should I use nanoseconds?
+	if (targetFramerate > 0) {
+		_maximumFrameTime = std::chrono::microseconds(1000000 / targetFramerate);
+	} else {
+		_maximumFrameTime = std::chrono::microseconds(0);
+	}
+	// This encourages the program to think that it needs to update the frame right after
+	// construction or a reset time span.
+	ManualReset();
 }
