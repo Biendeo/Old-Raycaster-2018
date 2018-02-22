@@ -12,6 +12,10 @@ void Engine::RunLoop(float deltaTime) {
 
 }
 
+Player& Engine::GetPlayer() {
+	return _player;
+}
+
 void Engine::Finalise() {
 
 }

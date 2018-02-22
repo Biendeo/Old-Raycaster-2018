@@ -3,6 +3,7 @@
 #include <cstdint>
 
 #include "Framerate.h"
+#include "Player.h"
 
 class Engine {
 	public:
@@ -18,9 +19,16 @@ class Engine {
 
 	/**
 	 * Runs a step in the program's execution.
+	 * //TODO: I might need to just remove this if the view is handling the time step.
 	 * @param deltaTime The number of seconds since the last frame.
 	 */
 	void RunLoop(float deltaTime);
+
+	/**
+	 * Returns the current player object.
+	 * @return
+	 */
+	Player& GetPlayer();
 
 	/**
 	 * Cleans up loose variables of the program.
@@ -28,6 +36,7 @@ class Engine {
 	void Finalise();
 
 	private:
+	Player _player;
 };
 
 
