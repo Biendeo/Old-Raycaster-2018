@@ -7,7 +7,7 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_SOURCE_DIR}/cmake)
 find_package(SDL2 REQUIRED)
 include_directories(${SDL2_INCLUDE_DIR} ./include)
 
-add_library(RaycasterEngine SHARED src/Engine/Framerate.cpp include/Framerate.h src/Engine/Engine.cpp include/Engine.h)
+add_library(RaycasterEngine SHARED src/Engine/Framerate.cpp include/Framerate.h src/Engine/Engine.cpp include/Engine.h src/Engine/Player.cpp include/Player.h src/Engine/Vector3.cpp include/Vector3.h)
 
 add_executable(Raycaster src/View/Main.cpp src/Engine/Framerate.cpp include/Framerate.h src/Engine/Engine.cpp include/Engine.h src/View/View.cpp src/View/View.h)
 
