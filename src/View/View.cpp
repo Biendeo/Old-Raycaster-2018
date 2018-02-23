@@ -3,6 +3,8 @@
 #include <sstream>
 #include <string>
 
+#include "Input.h"
+
 View::View(Engine* engine) {
 	//TODO: Nullcheck the engine.
 	_engine = engine;
@@ -21,6 +23,16 @@ void View::InitialiseSDL() {
 	_renderer = SDL_CreateRenderer(_window, -1, SDL_RENDERER_SOFTWARE);
 	_framerate = Framerate(60);
 	_frameCount = 0;
+
+	// Key bindings with SDL.
+	Input::BindKey(SDLK_w, Input::InputAction::MoveForward);
+	Input::BindKey(SDLK_UP, Input::InputAction::MoveForward);
+	Input::BindKey(SDLK_s, Input::InputAction::MoveBackward);
+	Input::BindKey(SDLK_DOWN, Input::InputAction::MoveBackward);
+	Input::BindKey(SDLK_a, Input::InputAction::StrafeLeft);
+	Input::BindKey(SDLK_d, Input::InputAction::StrafeRight);
+	Input::BindKey(SDLK_LEFT, Input::InputAction::TurnLeft);
+	Input::BindKey(SDLK_RIGHT, Input::InputAction::TurnRight);
 }
 
 void View::Loop() {
@@ -36,64 +48,15 @@ void View::Loop() {
 
 	_engine->Start();
 
-	//TODO: Make this much more concise.
-	bool forward = false;
-	bool backward = false;
-	bool strafeLeft = false;
-	bool strafeRight = false;
-	bool turnLeft = false;
-	bool turnRight = false;
-
 	while (!exiting) {
+		Input::UpdateInputs();
 		while (SDL_PollEvent(&e)) {
 			if (e.type == SDL_WINDOWEVENT && e.window.event == SDL_WINDOWEVENT_CLOSE) {
 				exiting = true;
 			} else if (e.type == SDL_KEYDOWN) {
-				switch (e.key.keysym.sym) {
-					case SDLK_w:
-					case SDLK_UP:
-						forward = true;
-						break;
-					case SDLK_s:
-					case SDLK_DOWN:
-						backward = true;
-						break;
-					case SDLK_a:
-						strafeLeft = true;
-						break;
-					case SDLK_d:
-						strafeRight = true;
-						break;
-					case SDLK_LEFT:
-						turnLeft = true;
-						break;
-					case SDLK_RIGHT:
-						turnRight = true;
-						break;
-				}
+				Input::PressKeyDown(e.key.keysym.sym);
 			} else if (e.type == SDL_KEYUP) {
-				switch (e.key.keysym.sym) {
-					case SDLK_w:
-					case SDLK_UP:
-						forward = false;
-						break;
-					case SDLK_s:
-					case SDLK_DOWN:
-						backward = false;
-						break;
-					case SDLK_a:
-						strafeLeft = false;
-						break;
-					case SDLK_d:
-						strafeRight = false;
-						break;
-					case SDLK_LEFT:
-						turnLeft = false;
-						break;
-					case SDLK_RIGHT:
-						turnRight = false;
-						break;
-				}
+				Input::PressKeyUp(e.key.keysym.sym);
 			}
 		}
 
@@ -101,22 +64,22 @@ void View::Loop() {
 		//? speed.
 		_engine->RunLoop(1.0f / _framerate.GetTargetFramerate());
 
-		if (forward) {
+		if (Input::IsAction(Input::InputAction::MoveForward)) {
 			_engine->GetPlayer().MoveForward(1.0f / _framerate.GetTargetFramerate());
 		}
-		if (backward) {
+		if (Input::IsAction(Input::InputAction::MoveBackward)) {
 			_engine->GetPlayer().MoveBackward(1.0f / _framerate.GetTargetFramerate());
 		}
-		if (strafeLeft) {
+		if (Input::IsAction(Input::InputAction::StrafeLeft)) {
 			_engine->GetPlayer().StrafeLeft(1.0f / _framerate.GetTargetFramerate());
 		}
-		if (strafeRight) {
+		if (Input::IsAction(Input::InputAction::StrafeRight)) {
 			_engine->GetPlayer().StrafeRight(1.0f / _framerate.GetTargetFramerate());
 		}
-		if (turnLeft) {
+		if (Input::IsAction(Input::InputAction::TurnLeft)) {
 			_engine->GetPlayer().TurnLeft(1.0f / _framerate.GetTargetFramerate());
 		}
-		if (turnRight) {
+		if (Input::IsAction(Input::InputAction::TurnRight)) {
 			_engine->GetPlayer().TurnRight(1.0f / _framerate.GetTargetFramerate());
 		}
 
