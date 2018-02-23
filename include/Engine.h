@@ -2,7 +2,9 @@
 
 #include <cstdint>
 
+#include "Color.h"
 #include "Framerate.h"
+#include "Map.h"
 #include "Player.h"
 
 class Engine {
@@ -31,12 +33,21 @@ class Engine {
 	Player& GetPlayer();
 
 	/**
+	 * Returns the current map object.
+	 * @return
+	 */
+	Map& GetMap();
+
+	/**
 	 * Cleans up loose variables of the program.
 	 */
 	void Finalise();
 
 	private:
 	Player _player;
+	Map _map;
+	Color _skyColor;
+	Color _floorColor;
 };
 
 

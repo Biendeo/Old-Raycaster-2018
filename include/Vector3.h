@@ -90,28 +90,28 @@ class Vector3 {
 	 * @param i
 	 * @return
 	 */
-	Vector3& operator*=(const type i);
+	Vector3& operator*=(type i);
 
 	/**
 	 * Divides a scale with all of this Vector3's fields.
 	 * @param i
 	 * @return
 	 */
-	Vector3& operator/=(const type i);
+	Vector3& operator/=(type i);
 
 	/**
 	 * Multiplies this with a scalar and returns a new object.
 	 * @param i
 	 * @return
 	 */
-	Vector3 operator*(const type i) const;
+	Vector3 operator*(type i) const;
 
 	/**
 	 * Divides this with a scalar and returns a new object.
 	 * @param i
 	 * @return
 	 */
-	Vector3 operator/(const type i) const;
+	Vector3 operator/(type i) const;
 
 	/**
 	 * Performs a cross product on this Vector3.
@@ -199,5 +199,3 @@ class Vector3 {
 	type _y;
 	type _z;
 };
-
-

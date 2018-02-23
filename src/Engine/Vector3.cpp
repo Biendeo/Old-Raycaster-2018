@@ -54,25 +54,25 @@ Vector3 Vector3::operator/(const Vector3& v) const {
 	return Vector3(*this) /= v;
 }
 
-Vector3& Vector3::operator*=(const Vector3::type i) {
+Vector3& Vector3::operator*=(Vector3::type i) {
 	X(X() * i);
 	Y(Y() * i);
 	Z(Z() * i);
 	return *this;
 }
 
-Vector3& Vector3::operator/=(const Vector3::type i) {
+Vector3& Vector3::operator/=(Vector3::type i) {
 	X(X() / i);
 	Y(Y() / i);
 	Z(Z() / i);
 	return *this;
 }
 
-Vector3 Vector3::operator*(const Vector3::type i) const {
+Vector3 Vector3::operator*(Vector3::type i) const {
 	return Vector3(*this) *= i;
 }
 
-Vector3 Vector3::operator/(const Vector3::type i) const {
+Vector3 Vector3::operator/(Vector3::type i) const {
 	return Vector3(*this) /= i;
 }
 
