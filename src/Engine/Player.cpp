@@ -2,6 +2,7 @@
 
 #include <cmath>
 
+//TODO: I've got this in multiple locations, so I should standardise it.
 static const float DEG_TO_RAD = static_cast<float>(M_PI) / 180.0f;
 static const float RAD_TO_DEG = 180.0f / static_cast<float>(M_PI);
 

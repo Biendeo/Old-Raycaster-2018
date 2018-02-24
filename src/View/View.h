@@ -4,6 +4,7 @@
 
 #include "Engine.h"
 #include "Framerate.h"
+#include "Vector2.h"
 
 class View {
 	public:
@@ -42,10 +43,25 @@ class View {
 	Engine* _engine;
 	SDL_Window* _window;
 	SDL_Renderer* _renderer;
-	SDL_Surface* _frontBuffer;
-	SDL_Surface* _backBuffer;
 
 	Framerate _framerate;
+
+	/**
+	 * Renders the scene and displays it to the renderer.
+	 */
+	void RenderScene();
+
+	/**
+	 * Computes the point where two lines intersect. If the two lines are parallel, then a
+	 * runtime exception will be thrown.
+	 * //TODO: This would be better in a separate math library. Also test this a lot!
+	 * @param p1
+	 * @param p2
+	 * @param p3
+	 * @param p4
+	 * @return
+	 */
+	Vector2 Intersection(const Vector2& p1, const Vector2& p2, const Vector2& p3, const Vector2& p4);
 };
 
 

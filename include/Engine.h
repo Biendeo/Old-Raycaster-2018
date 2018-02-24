@@ -39,6 +39,18 @@ class Engine {
 	Map& GetMap();
 
 	/**
+	 * Returns the sky color.
+	 * @return
+	 */
+	Color& GetSkyColor();
+
+	/**
+	 * Returns the floor color.
+	 * @return
+	 */
+	Color& GetFloorColor();
+
+	/**
 	 * Cleans up loose variables of the program.
 	 */
 	void Finalise();
