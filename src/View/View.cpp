@@ -158,7 +158,8 @@ void View::RenderScene() {
 			// I'm assuming that the walls are one unit high.
 			// The denominator here is for some basic perspective correction, although it isn't
 			// perfect.
-			float heightAngle = atan2f(1.0f, closestDistance) * RAD_TO_DEG / (cosf((currentDirection - _engine->GetPlayer().GetRotation()) * DEG_TO_RAD));
+			float correctedDistance = closestDistance * cosf((currentDirection - _engine->GetPlayer().GetRotation()) * DEG_TO_RAD);
+			float heightAngle = atan2f(1.0f, correctedDistance) * RAD_TO_DEG;
 			//TODO: This isn't exact but it does the job.
 			int pixelHeight = HEIGHT;
 			if (heightAngle < vfov) {
