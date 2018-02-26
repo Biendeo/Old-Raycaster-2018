@@ -76,6 +76,14 @@ Vector3 Vector3::operator/(Vector3::type i) const {
 	return Vector3(*this) /= i;
 }
 
+bool Vector3::operator==(const Vector3& v) const {
+	return X() == v.X() && Y() == v.Y() && Z() == v.Z();
+}
+
+bool Vector3::operator!=(const Vector3& v) const {
+	return !operator==(v);
+}
+
 Vector3& Vector3::CrossSelf(const Vector3& v) {
 	return *this = Cross(v);
 }

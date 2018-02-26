@@ -114,6 +114,20 @@ class Vector3 {
 	Vector3 operator/(type i) const;
 
 	/**
+	 * Compares whether two Vector3s are equal.
+	 * @param v
+	 * @return
+	 */
+	bool operator==(const Vector3& v) const;
+
+	/**
+	 * Compares whether two Vector3s are not equal.
+	 * @param v
+	 * @return
+	 */
+	bool operator!=(const Vector3& v) const;
+
+	/**
 	 * Performs a cross product on this Vector3.
 	 * @param v
 	 * @return

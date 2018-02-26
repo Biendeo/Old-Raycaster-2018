@@ -69,6 +69,15 @@ Vector2 Vector2::operator/(Vector2::type i) const {
 	return Vector2(*this) /= i;
 }
 
+bool Vector2::operator==(const Vector2& v) const {
+	return X() == v.X() && Y() == v.Y();
+}
+
+bool Vector2::operator!=(const Vector2& v) const {
+	return !operator==(v);
+}
+
+
 Vector2::type Vector2::Dot(const Vector2& v) const {
 	return X() * v.X() + Y() * v.Y();
 }

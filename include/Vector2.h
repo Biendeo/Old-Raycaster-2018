@@ -113,6 +113,20 @@ class Vector2 {
 	Vector2 operator/(type i) const;
 
 	/**
+	 * Compares whether two Vector2s are equal.
+	 * @param v
+	 * @return
+	 */
+	bool operator==(const Vector2& v) const;
+
+	/**
+	 * Compares whether two Vector2s are not equal.
+	 * @param v
+	 * @return
+	 */
+	bool operator!=(const Vector2& v) const;
+
+	/**
 	 * Returns the dot product with another Vector2.
 	 * @param v
 	 * @return

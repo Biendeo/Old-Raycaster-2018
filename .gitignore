@@ -1,1 +1,8 @@
+.vs/
 .idea/
+bin/
+[Bb]uild/
+
+# Please put the SDL libraries in yourself.
+lib/SDL2-2.0.7/
+lib/SDL2-2.0.7-VisualStudio/
